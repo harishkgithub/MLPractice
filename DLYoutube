@@ -1,0 +1,84 @@
+--------------------------------------------------------------------------------
+1.Build a Machine Learning API with Django (1 of 6) | Build Neural Network
+--------------------------------------------------------------------------------
+https://www.youtube.com/watch?v=tDnAcbYROSI
+
+DataSet
+https://myaccount.google.com/u/0/?utm_source=YouTubeWeb&tab=rk&utm_medium=act&tab=rk&hl=en&nlr=1
+
+import pandas as pd 
+import numpy as np 
+import warnings 
+from collections imort Counter
+# drop any row will null fields 
+isany.na()
+
+# remove loanId as it is not contributing
+# ApplicantIncome+Co-ApplicantIncome = total income if we want to 
+# look of missing data and remove entire row only if required 
+# See the sample size 
+# Use Counter to see the imbalance in y varaible
+# Use Counter to to find ratio/ percentage 
+# Algorithm needs weights/numerical values so here 
+# we use one-hot encoding for columns which is not number     
+# pandas.get_dummies()  for encoding 
+# For dependant variable y, do ont use getdummies as we dont need extra column say y_sanction_loan,y_not_sanction_loan
+# 
+# SMOTE analysis 
+#     - we are going to bumb up the "minority" class here it is "No"
+#     - Use the temp variable X1 to store fit
+#   
+#     - Scale up the X1 with MinMaxScaler and call it X and use it   
+#     - We dont scale it, its a really big mess 
+#Counter will show balanced 332 -Y an d 332-N
+# 20% for testing rest is modeling
+
+#200 neurons  - 200 is some random number (relu)
+#400 further split 
+#4 condense it to 4 
+#1 finally we need yes or no so we have 1  here we use sigmoid(activation fn) as its value is 0 or 1 
+# optimizer -> adam 
+# loss -> binary_crossentropy as this is clasifiaction problem
+# we want accuracy as output here 
+# fit -> randomly gave batch size = 20 and epochs as 50 and we set verbose as 0 as we dont need it 
+# evaluate 
+# we got 85-86%
+# Can we do better yes but we may compromise quality
+# we need a limiter ant y_pred>0.5 is 1 / approved 
+# but it might be wrong cause in our data we have more "yes" so we may set it 0.6 instead of 0.5 we should play around 
+# plot Confusion matrix 
+# we 23 wrongs(type 1 & 2 errors)
+# lets change limiter from 0.5 to 0.55 
+# we see changes in confusion matrix we get (18+4=22 type 1 + 2 errors )
+# lets change layers to 
+            400
+            800
+            10                 
+# we get 89%
+# But confusion matrix has more errors / model is overfitting
+# Now suppose we change back the layers to 
+          200
+          400
+          4
+# we will not get same accuracy but somthing near by 
+# say 84-85% even our confusion matrix will differ 
+# Increase in accuracy doesnt actually make model better 
+#
+# epochs =100 it going to do forward and backward propogation 100 differnet times with each batch size 20 
+# we got 91% and confusion matrix 22 this is better 
+# we play with the model with hyper paramters 
+
+# not just accuracy we decrease the error 
+# Next step we a different dataset which is mirror image of current one 
+# This is better than rule based approach 
+# Can use Reinforcement learning -> we this wrongly predicts machine will penalize or award itself 
+# Using neural network makes he used SVC but it not that great 
+# Simple 20-30 lines of code with sophistocated model(tensor flow)
+#
+# we have not added regularization yet say(0.5) it will give better results or may be worse 
+# How you go machine learning model for classification algorithm 
+#   on hot encoding 
+#   Resampling 
+#   Building very small neural network    
+#   Different thresolds - limiter 
+#   Confusion matrix to know how well my model better 
